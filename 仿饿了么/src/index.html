@@ -1,0 +1,166 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+  <!-- 声明文档使用的字符编码 -->
+    <meta charset='utf-8'>
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- 页面描述 -->
+    <meta name="description" content="仿照饿了么校园招聘app开发的vue移动app"/>
+    <!-- 页面关键词 -->
+    <meta name="keywords" content=""/>
+    <!-- 网页作者 -->
+    <meta name="author" content="yuyi, 879249235@qq.com"/>
+    <!-- 搜索引擎抓取 -->
+    <meta name="robots" content="index,follow"/>
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+    <!-- `width=device-width` 会导致 iPhone 5 添加到主屏后以 WebApp 全屏模式打开页面时出现黑边 http://bigc.at/ios-webapp-viewport-meta.orz -->
+    <!-- iOS 设备 begin -->
+    <meta name="apple-mobile-web-app-title" content="标题">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
+    <!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 添加 favicon icon -->
+    <title>2018饿了么校园招聘</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/Element-ui-index.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/control.css">
+</head>
+
+<body>
+	  <div id="app">
+	  	<el-row>
+			<el-col :span="24">
+				<div class="grid-content bg-purple-dark">
+				<div class="e"><img src="assets/images/e.png" class="ep"></div>
+				  	<el-dropdown>
+						<el-button type="primary">
+						    <i class="fa fa-bars bars" v-on:click="showrightbar"></i>
+						</el-button>
+					</el-dropdown>
+				</div>
+				</el-col>
+		</el-row>
+		<el-row>
+			<el-col :span="24">
+				<div class="grid-head bg-purple-dark">
+					<el-input v-model="input" placeholder="请输入职位"></el-input>		
+				</div>
+			</el-col>
+		</el-row>
+		<el-row>
+			  <el-col :span="8"><div class="div1">全国</div></el-col>
+			  <el-col :span="8"><div class="div2">职位类别</div></el-col>
+			  <el-col :span="8"><div class="div3">社会招聘</div></el-col>
+		</el-row>
+		<el-row class="rightnav">
+			  <el-col :span="8">
+				  <div class="abox">
+				  </div>
+			  </el-col>
+			  <el-col :span="16">
+				  <div class="cmenu">
+				  		<ul>
+				  		<li v-for="item in items">
+				  		<a href="#" v-on:click="">{{item.name}}</a>
+				  		</li>
+				  		</ul>
+				  </div>
+			  </el-col>
+		</el-row>
+		<el-row class="contentnav">
+			  <el-col :span="24">
+				  <div class="postnav">
+				  		<ul>
+					  		<li v-for="post in posts">
+								<span class="postname">{{post.name}}</span>
+					  			<span class="postaddress">{{post.address}}</span>
+					  			<br>
+					  			<span class="postnum">招聘人数：{{post.num}}</span>
+					  			<span class="posttime">发布时间：{{post.time}}</span>
+					  		</li>
+				  		</ul>
+				  </div>
+			  </el-col>
+		</el-row>
+		<el-row>
+		    <el-col :span="24">
+		  		<div class="box1">
+		  			<p>技术类</p>
+                    <p>国内顶尖的技术团队</p>
+		  		</div>
+		  		<div class="box2">
+		  			<p>产品类</p>
+                    <p>工匠精神专注打造好产品</p>
+		  		</div>
+		  		<div class="box3">
+		  			<p>设计类</p>
+                    <p>在这里展示你天马行空的想法</p> 
+		  		</div>
+		  		<div class="box4">
+		  			<p>市场类</p>
+                    <p>开疆扩土需要矫勇善战的你</p> 
+		  		</div>
+		  		<div class="box5">
+		  			<p>职能类</p>
+                    <p>平凡的事做到极致就是不平凡</p>
+		  		</div>
+		  		<div class="box6">
+		  			<p>物流类</p>
+                    <p>想成为一个风一样的骑士么</p> 
+		  		</div>
+		  		<div class="box7">
+		  			<p>客服类</p>
+                    <p>拥有甜美声线的你还在等什么</p>
+		  		</div>
+		  	</el-col>
+		</el-row>
+		<el-row>
+		    <el-col :span="24">
+		  		<div class="foot">
+		  			@yuyi,2017,Beijing University of Technology
+		  		</div>
+		  	</el-col>
+		</el-row>
+	  </div>
+  	  <!-- 页面的脚本 -->
+  	  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+      <script type="text/javascript" src="assets/js/vue.min.js"></script>
+      <script type="text/javascript" src="assets/js/Element-ui-index.js"></script>
+      <script type="text/javascript" src="assets/js/index.js"></script>
+
+      <!-- ！页面的脚本 -->
+</body>
+	
+</html>
